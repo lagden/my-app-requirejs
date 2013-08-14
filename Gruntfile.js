@@ -1,12 +1,3 @@
-/*
- * grunt-peon-gui
- * Creates a local webserver GUI tool to run Grunt tasks
- *
- * Copyright (c) 2013 Mark Parolisi, contributors
- * Licensed under the MIT license.
- */
-
-/*global module */
 module.exports = function(grunt) {
     "use strict";
     grunt.initConfig({
@@ -53,10 +44,13 @@ module.exports = function(grunt) {
                         dead_code: true
                     }
                 },
-                files: [
-                    {'js/jquery.js': ['js/jquery.js']},
-                    {'js/require.js': ['js/require.js']},
-                ]
+                files: [{
+                    'js/jquery.js': ['js/jquery.js']
+                }, {
+                    'js/require.js': ['js/require.js']
+                }, {
+                    'js/main.js': ['js/main.js']
+                }]
             }
         },
         watch: {
