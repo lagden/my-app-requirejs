@@ -1,0 +1,23 @@
+css/*
+
+.sass-cache
+node_modules
+bower_components
+
+# Others
+cgi-bin
+error_log
+.DS_Store
+thumbs.db
+.*.swp
+*.tmproj
+*.mwb
+*.mwb.bak
+*.sublime-*
+.arch-params
+.bzr
+_darcs
+.hg
+.monotone
+.svn
+.project

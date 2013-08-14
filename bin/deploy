@@ -1,0 +1,34 @@
+#!/bin/bash
+
+ssh -T lagden@lagden.webfactional.com <<EOF
+
+mkdir -p /webapps/htdocs/my-app-requirejs && cd ~/webapps/htdocs/my-app-requirejs
+
+if [ ! -d .git ]
+then
+  /usr/bin/env -i /usr/bin/git clone git@github.com:lagden/my-app-requirejs.git ./
+fi
+
+# Pega o branch atual 
+k=\$(/usr/bin/env -i /usr/bin/git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1/");
+
+/usr/bin/env -i /usr/bin/git stash
+/usr/bin/env -i /usr/bin/git checkout master
+/usr/bin/env -i /usr/bin/git reset --hard
+/usr/bin/env -i /usr/bin/git pull origin master
+/usr/bin/env -i /usr/bin/git checkout \$k
+
+echo "                                "
+echo "< Deploy finalizado... Yeahh!! >"
+echo "------------------------------  "
+echo "        \   ^__^                "
+echo "         \  (oo)\_______        "
+echo "            (__)\       )\/\    "
+echo "                ||----w |       "
+echo "                ||     ||       "
+echo "                                "
+
+exit 0
+EOF
+
+exit 0
