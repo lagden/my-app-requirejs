@@ -34,33 +34,41 @@ module.exports = function(grunt) {
                     filter: 'isFile'
                 }, {
                     expand: true,
-                    cwd: 'bower_components/gsap/src/',
-                    src: ['uncompressed/**'],
+                    cwd: 'bower_components/gsap/src/minified/',
+                    src: ['**'],
                     dest: 'js/gsap/'
                 }]
             }
         },
         uglify: {
             app: {
-                files: ['js/**/*.js'],
-                tasks: ['default'],
                 options: {
-                    nospawn: true
-                }
+                    banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %> */',
+                    properties: true,
+                    preserveComments: false,
+                    compress: {
+                        global_defs: {
+                            "DEBUG": false
+                        },
+                        dead_code: true
+                    }
+                },
+                files: [
+                    {'js/jquery.js': ['js/jquery.js']},
+                    {'js/require.js': ['js/require.js']},
+                ]
             }
         },
         watch: {
             app: {
-                files: ['js/**/*.js', 'sass/**/*.scss'],
-                tasks: ['default'],
+                files: ['sass/**/*.scss'],
+                tasks: ['compass'],
                 options: {
                     nospawn: true
                 }
             }
         }
     });
-
-    grunt.loadTasks('tasks');
 
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-uglify');
