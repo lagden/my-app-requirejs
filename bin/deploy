@@ -8,7 +8,7 @@ mkdir -p ~/webapps/htdocs/my-app-requirejs && cd ~/webapps/htdocs/my-app-require
 
 if [ ! -d .git ]
 then
-  /usr/bin/env -i /usr/bin/git clone git@github.com:lagden/my-app-requirejs.git ./
+  /usr/bin/env -i /usr/bin/git clone https://github.com/lagden/my-app-requirejs.git ./
 fi
 
 # Pega o branch atual 
