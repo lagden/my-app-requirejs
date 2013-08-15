@@ -1,8 +1,8 @@
 require.config({
-    baseUrl: 'lib',
+    baseUrl: '.',
     paths: {
-        'TweenMax': 'gsap/TweenMax.min',
-        'Loading': '../js/lib/Loading'
+        'TweenMax': 'js/lib/gsap/TweenMax.min',
+        'Loading': 'js/helpers/Loading'
     },
     shim: {
         'Loading': {

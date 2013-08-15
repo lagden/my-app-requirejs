@@ -1,8 +1,10 @@
 #!/bin/bash
 
+grunt
+
 ssh -T lagden@lagden.webfactional.com <<EOF
 
-mkdir -p /webapps/htdocs/my-app-requirejs && cd ~/webapps/htdocs/my-app-requirejs
+mkdir -p ~/webapps/htdocs/my-app-requirejs && cd ~/webapps/htdocs/my-app-requirejs
 
 if [ ! -d .git ]
 then
@@ -18,6 +20,12 @@ k=\$(/usr/bin/env -i /usr/bin/git branch --no-color 2> /dev/null | sed -e '/^[^*
 /usr/bin/env -i /usr/bin/git pull origin master
 /usr/bin/env -i /usr/bin/git checkout \$k
 
+exit 0
+EOF
+
+scp -r js/lib lagden@lagden.webfactional.com:~/webapps/htdocs/my-app-requirejs/.
+scp -r css lagden@lagden.webfactional.com:~/webapps/htdocs/my-app-requirejs/.
+
 echo "                                "
 echo "< Deploy finalizado... Yeahh!! >"
 echo "------------------------------  "
@@ -27,8 +35,5 @@ echo "            (__)\       )\/\    "
 echo "                ||----w |       "
 echo "                ||     ||       "
 echo "                                "
-
-exit 0
-EOF
 
 exit 0

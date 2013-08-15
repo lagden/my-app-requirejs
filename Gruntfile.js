@@ -1,5 +1,16 @@
 module.exports = function(grunt) {
     "use strict";
+
+    var pathLib = 'js/lib',
+        uglifyMap = ['require.js','jquery.js'],
+        uglifyFiles = [];
+
+    for (var i = uglifyMap.length - 1; i >= 0; i--) {
+        var obj = {};
+        obj[pathLib + '/' + uglifyMap[i]] = [pathLib + '/' + uglifyMap[i]];
+        uglifyFiles.push(obj);
+    };
+
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         compass: {
@@ -9,25 +20,30 @@ module.exports = function(grunt) {
                 }
             }
         },
+        clean: {
+            app: {
+                src: [pathLib]
+            }
+        },
         copy: {
             app: {
                 files: [{
                     expand: true,
-                    cwd: 'bower_components/jquery/',
+                    cwd: 'bower_components/jquery',
                     src: ['jquery.js'],
-                    dest: 'lib/',
+                    dest: pathLib,
                     filter: 'isFile'
                 }, {
                     expand: true,
-                    cwd: 'bower_components/requirejs/',
+                    cwd: 'bower_components/requirejs',
                     src: ['require.js'],
-                    dest: 'lib/',
+                    dest: pathLib,
                     filter: 'isFile'
                 }, {
                     expand: true,
-                    cwd: 'bower_components/gsap/src/minified/',
+                    cwd: 'bower_components/gsap/src/minified',
                     src: ['**'],
-                    dest: 'lib/gsap/'
+                    dest: pathLib + '/gsap'
                 }]
             }
         },
@@ -44,28 +60,32 @@ module.exports = function(grunt) {
                         dead_code: true
                     }
                 },
-                files: [{
-                    'lib/jquery.js': ['lib/jquery.js']
-                }, {
-                    'lib/require.js': ['lib/require.js']
-                }]
+                files: uglifyFiles
             }
         },
         watch: {
-            app: {
-                files: ['sass/**/*.scss'],
+            compass: {
+                files: ['**/*.scss'],
                 tasks: ['compass'],
                 options: {
-                    nospawn: true
+                    spawn: false
                 }
+            },
+            livereload: {
+                options: {
+                    livereload: true
+                },
+                files: ['css/**/*'],
             }
         }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-livereload');
+    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-watch');
 
-    grunt.registerTask('default', ['compass', 'copy', 'uglify']);
+    grunt.registerTask('default', ['compass', 'clean', 'copy', 'uglify']);
 };

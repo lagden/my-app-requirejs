@@ -1,16 +1,16 @@
 require.config({
-    baseUrl: 'lib',
+    baseUrl: '.',
     paths: {
-        'jquery': 'jquery',
-        'jquery.gsap': 'gsap/jquery.gsap.min',
-        'TweenMax': 'gsap/TweenMax.min'
+        'jquery': 'js/lib/jquery',
+        'jquery.gsap': 'js/lib/gsap/jquery.gsap.min',
+        'TweenMax': 'js/lib/gsap/TweenMax.min'
     },
     shim: {
         'jquery': {
             exports: '$'
         },
         'jquery.gsap': {
-            deps: ['jquery']
+            deps: ['js/lib/jquery']
         }
     }
 });
