@@ -25,10 +25,10 @@ EOF
 
 echo "Copiando a pasta js/lib..."
 echo ""
-scp -r js/lib lagden@lagden.webfactional.com:~/webapps/htdocs/my-app-requirejs/js/.
+scp -r -q js/lib lagden@lagden.webfactional.com:~/webapps/htdocs/my-app-requirejs/js/.
 echo "Copiando a pasta css..."
 echo ""
-scp -r css lagden@lagden.webfactional.com:~/webapps/htdocs/my-app-requirejs/.
+scp -r -q css lagden@lagden.webfactional.com:~/webapps/htdocs/my-app-requirejs/.
 echo "                                "
 echo "< Deploy finalizado... Yeahh!! >"
 echo "------------------------------  "
