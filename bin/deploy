@@ -23,9 +23,12 @@ k=\$(/usr/bin/env -i /usr/bin/git branch --no-color 2> /dev/null | sed -e '/^[^*
 exit 0
 EOF
 
-scp -r js/lib lagden@lagden.webfactional.com:~/webapps/htdocs/my-app-requirejs/.
+echo "Copiando a pasta js/lib..."
+echo ""
+scp -r js/lib lagden@lagden.webfactional.com:~/webapps/htdocs/my-app-requirejs/js/.
+echo "Copiando a pasta css..."
+echo ""
 scp -r css lagden@lagden.webfactional.com:~/webapps/htdocs/my-app-requirejs/.
-
 echo "                                "
 echo "< Deploy finalizado... Yeahh!! >"
 echo "------------------------------  "
