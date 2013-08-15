@@ -15,19 +15,19 @@ module.exports = function(grunt) {
                     expand: true,
                     cwd: 'bower_components/jquery/',
                     src: ['jquery.js'],
-                    dest: 'js/',
+                    dest: 'lib/',
                     filter: 'isFile'
                 }, {
                     expand: true,
                     cwd: 'bower_components/requirejs/',
                     src: ['require.js'],
-                    dest: 'js/',
+                    dest: 'lib/',
                     filter: 'isFile'
                 }, {
                     expand: true,
                     cwd: 'bower_components/gsap/src/minified/',
                     src: ['**'],
-                    dest: 'js/gsap/'
+                    dest: 'lib/gsap/'
                 }]
             }
         },
@@ -45,11 +45,9 @@ module.exports = function(grunt) {
                     }
                 },
                 files: [{
-                    'js/jquery.js': ['js/jquery.js']
+                    'lib/jquery.js': ['lib/jquery.js']
                 }, {
-                    'js/require.js': ['js/require.js']
-                }, {
-                    'js/main.js': ['js/main.js']
+                    'lib/require.js': ['lib/require.js']
                 }]
             }
         },

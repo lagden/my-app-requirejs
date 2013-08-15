@@ -3,7 +3,7 @@ node_modules
 bower_components
 
 css/*
-js/*
+lib/*
 
 # Preserve
 
