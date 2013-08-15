@@ -10,7 +10,7 @@ require.config({
             exports: '$'
         },
         'jquery.gsap': {
-            deps: ['js/lib/jquery']
+            deps: ['jquery']
         }
     }
 });
