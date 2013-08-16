@@ -1,10 +1,27 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
-`grunt && r.js -o js/builds/sample-build.js`
+THIS=$(basename $0)
+DIR="$( cd -P "$( dirname "$0" )" && pwd )"
+cd $DIR
+cd ..
+CURR_FOLDER=`pwd`
+
+grunt
+r.js -o js/builds/sample-build.js
 
 ssh -T lagden@lagden.webfactional.com <<EOF
 
 mkdir -p ~/webapps/htdocs/my-app-requirejs && cd ~/webapps/htdocs/my-app-requirejs
+
+if [ -d js/built ]
+then
+    rm -rf js/built
+fi
+
+if [ -d js/lib ]
+then
+    rm -rf js/lib
+fi
 
 if [ ! -d .git ]
 then
@@ -23,16 +40,16 @@ k=\$(/usr/bin/env -i /usr/bin/git branch --no-color 2> /dev/null | sed -e '/^[^*
 exit 0
 EOF
 
-echo "Copiando os scritps..."
 echo ""
+echo "Copiando os scritps..."
 scp -r -q js/built lagden@lagden.webfactional.com:~/webapps/htdocs/my-app-requirejs/js/.
 scp -r -q js/lib lagden@lagden.webfactional.com:~/webapps/htdocs/my-app-requirejs/js/.
 echo "Copiando os css..."
 echo ""
 scp -r -q css lagden@lagden.webfactional.com:~/webapps/htdocs/my-app-requirejs/.
-echo "                                "
+echo " ------------------------------ "
 echo "< Deploy finalizado... Yeahh!! >"
-echo "------------------------------  "
+echo " ------------------------------ "
 echo "        \   ^__^                "
 echo "         \  (oo)\_______        "
 echo "            (__)\       )\/\    "
