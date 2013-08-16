@@ -1,20 +1,9 @@
-require.config({
-    baseUrl: '.',
-    paths: {
-        'TweenMax': 'js/lib/gsap/TweenMax.min',
-        'Loading': 'js/helpers/Loading'
-    },
-    shim: {
-        'Loading': {
-            deps: ['TweenMax']
-        }
-    }
-});
+'use strict';
 
-require(['Loading'], function(Loading) {
+require(['lib/gsap/TweenMax.min', 'helpers/Loading'], function(Loading) {
+    var doc = window.document,
+        loading = new Loading('loading', '.spinner');
 
-    var doc = window.document;
-    var loading = new Loading('loading', '.spinner');
     loading.show();
 
     setTimeout(function() {
@@ -27,5 +16,4 @@ require(['Loading'], function(Loading) {
             doc.body.appendChild(fragment);
         });
     }, 2000);
-
 });

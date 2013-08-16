@@ -46,7 +46,7 @@
     }
 
     if (typeof define === 'function' && define.amd) {
-        define(function() {
+        define(function () {
             return Loading;
         });
     } else {

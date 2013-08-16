@@ -1,22 +1,19 @@
 require.config({
-    baseUrl: '.',
+    baseUrl: 'js',
     paths: {
-        'jquery': 'js/lib/jquery',
-        'jquery.gsap': 'js/lib/gsap/jquery.gsap.min',
-        'TweenMax': 'js/lib/gsap/TweenMax.min'
+        'TweenMax': 'lib/gsap/TweenMax.min',
+        'jquery': 'lib/jquery',
+        'jquery.gsap': 'lib/gsap/jquery.gsap.min'
     },
     shim: {
-        'jquery': {
-            exports: '$'
-        },
-        'jquery.gsap': {
-            deps: ['jquery']
-        }
+        'jquery.gsap': ['jquery', 'TweenMax']
     }
 });
 
-require(['jquery', 'TweenMax', 'jquery.gsap'], function ($, TweenMax) {
-
-    console.log('jQuery version:', $.fn.jquery);
-    TweenMax.to($('h1:eq(0)'), 1, {left: 100});
+require(['jquery', 'jquery.gsap'], function($) {
+    $('h1:eq(0)').animate({
+        left: 100
+    }, 1000, function() {
+        console.log('jQuery version:', $.fn.jquery);
+    });
 });
