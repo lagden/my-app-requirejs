@@ -1,8 +1,9 @@
 module.exports = function(grunt) {
     "use strict";
 
-    var pathLib = 'js/lib',
-        uglifyMap = ['require.js','jquery.js'],
+    var pathBuilt = 'js/built',
+        pathLib = 'js/lib',
+        uglifyMap = ['require.js'],
         uglifyFiles = [];
 
     for (var i = uglifyMap.length - 1; i >= 0; i--) {
@@ -22,28 +23,17 @@ module.exports = function(grunt) {
         },
         clean: {
             app: {
-                src: [pathLib]
+                src: [pathBuilt]
             }
         },
         copy: {
             app: {
                 files: [{
                     expand: true,
-                    cwd: 'bower_components/jquery',
-                    src: ['jquery.js'],
-                    dest: pathLib,
-                    filter: 'isFile'
-                }, {
-                    expand: true,
                     cwd: 'bower_components/requirejs',
                     src: ['require.js'],
                     dest: pathLib,
                     filter: 'isFile'
-                }, {
-                    expand: true,
-                    cwd: 'bower_components/gsap/src/minified',
-                    src: ['**'],
-                    dest: pathLib + '/gsap'
                 }]
             }
         },
@@ -80,9 +70,9 @@ module.exports = function(grunt) {
         }
     });
 
+    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-livereload');
     grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-watch');

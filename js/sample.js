@@ -1,6 +1,6 @@
 'use strict';
 
-require(['lib/gsap/TweenMax.min', 'helpers/Loading'], function(Loading) {
+require(['helpers/Loading','../bower_components/gsap/src/uncompressed/TweenMax'], function(Loading) {
     var doc = window.document,
         loading = new Loading('loading', '.spinner');
 

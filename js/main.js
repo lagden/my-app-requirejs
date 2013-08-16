@@ -1,9 +1,11 @@
+'use strict';
+
 require.config({
     baseUrl: 'js',
     paths: {
-        'TweenMax': 'lib/gsap/TweenMax.min',
-        'jquery': 'lib/jquery',
-        'jquery.gsap': 'lib/gsap/jquery.gsap.min'
+        'TweenMax': '../bower_components/gsap/src/minified/TweenMax.min',
+        'jquery.gsap': '../bower_components/gsap/src/minified/jquery.gsap.min',
+        'jquery': '../bower_components/jquery/jquery.min'
     },
     shim: {
         'jquery.gsap': ['jquery', 'TweenMax']
