@@ -1,6 +1,6 @@
 #!/bin/bash
 
-grunt
+`grunt && r.js -o js/builds/sample-build.js`
 
 ssh -T lagden@lagden.webfactional.com <<EOF
 
